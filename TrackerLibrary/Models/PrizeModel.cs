@@ -35,5 +35,10 @@ namespace TrackerLibrary.Models
             int.TryParse(percentage, out percentageValue);
             Percentage = percentageValue;
         }
+
+        internal string ToCsvString()
+        {
+            return $"{this.Id},{this.PlaceNumber},{this.PlaceName},{this.Amount},{this.Percentage}";
+        }
     }
 }
