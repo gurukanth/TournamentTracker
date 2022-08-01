@@ -1,3 +1,5 @@
+using System.Configuration;
+
 namespace TrackerUI
 {
     internal static class Program
@@ -13,7 +15,8 @@ namespace TrackerUI
             ApplicationConfiguration.Initialize();
 
             //Iniialize he database connection
-            TrackerLibrary.GlobalConfig.InitializeConnections(true, true);
+            TrackerLibrary.GlobalConfig.SqlConnectionString = ConfigurationManager.ConnectionStrings["Tournaments"].ConnectionString;
+            TrackerLibrary.GlobalConfig.InitializeConnections(TrackerLibrary.DatabaseType.Sql);
             Application.Run(new CreatePrizeForm());
 
             //Application.Run(new TournamentDashboardForm());

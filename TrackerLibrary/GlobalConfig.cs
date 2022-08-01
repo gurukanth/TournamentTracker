@@ -4,27 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrackerLibrary.DataAccess;
+using System.Configuration;
 
 namespace TrackerLibrary
 {
     public static class GlobalConfig
     {
-        public static List<IDataConnection> Connections { get; set; } = new List<IDataConnection>();
+        public static IDataConnection Connection { get; set; }
+        public static string SqlConnectionString { get; set; }
 
-        public static void InitializeConnections(bool database, bool textFiles)
+        public static void InitializeConnections(DatabaseType dbType)
         {
             
-            if (database)
+            if (dbType == DatabaseType.Sql)
             {
                 //todo setup the sql connector
-                SQLConnector sql = new SQLConnector();
-                Connections.Add(sql);
+                Connection = new SQLConnector();
             }
 
-            if (textFiles)
+            else if (dbType == DatabaseType.Text)
             {
-                TextConnector text = new TextConnector();
-                Connections.Add(text);
+                Connection = new TextConnector();
             }
         }
     }
