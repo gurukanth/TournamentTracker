@@ -17,6 +17,25 @@ namespace TrackerLibrary.DataAccess
 {
     public class SQLConnector : IDataConnection
     {
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.SqlConnectionString))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@FirstName", model.FirstName);
+                parameters.Add("@LastName", model.LastName);
+                parameters.Add("@EmailAddress", model.EmailAddress);
+                parameters.Add("@CellPhoneNumber", model.CellPhoneNumber);
+                parameters.Add("@id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spPeople_Insert", parameters, commandType: CommandType.StoredProcedure);
+
+                model.Id = parameters.Get<int>("@id");
+
+                return model;
+            }
+        }
+
         public PrizeModel CreatePrize(PrizeModel model)
         {
             Console.WriteLine($"ConnectionSrting:{GlobalConfig.SqlConnectionString}");
