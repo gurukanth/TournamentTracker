@@ -77,5 +77,8 @@
     <Build Include="dbo\Tables\MatchupEntries.sql" />
     <Build Include="dbo\Stored Procedures\spPrizes.sql" />
     <Build Include="dbo\Stored Procedures\spPeople_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spPeople_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spTeams_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spTeamMembers_Insert.sql" />
   </ItemGroup>
 </Project>

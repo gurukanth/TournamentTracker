@@ -18,5 +18,15 @@ namespace TrackerLibrary.Models
         {
             return $"{this.Id},{this.FirstName},{this.LastName},{this.EmailAddress},{this.CellPhoneNumber}";
         }
+
+        public string   FullName
+        {
+            get 
+            {
+                return $"{this.FirstName} {this.LastName}";
+            }
+            
+        }
+
     }
 }

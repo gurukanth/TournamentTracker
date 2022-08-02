@@ -84,5 +84,36 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
+        public static List<TeamModel> ConvertToTeamModels(this List<string> lines)
+        {
+            var teams = new List<TeamModel>();
+            foreach (string line in lines)
+            {
+                string[] columns = line.Split(",");
+                teams.Add(new TeamModel()
+                {
+                    Id = int.Parse(columns[0]),
+                    Name = columns[1]
+                });
+            }
+            return teams;
+        }
+
+        public static void SaveToTeamsFile(this List<TeamModel> teams, string fileName)
+        {
+            var lines = new List<string>();
+            foreach(var item in teams)
+            {
+                lines.Add(item.ToCsvString());
+            }
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        public static void SaveToTeamMembersFile(this List<string> lines, string fileName)
+        {
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
     }
+
 }
