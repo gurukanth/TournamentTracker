@@ -13,5 +13,10 @@ namespace TrackerLibrary.Models
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string CellPhoneNumber { get; set; }
+
+        public string ToCsvString()
+        {
+            return $"{this.Id},{this.FirstName},{this.LastName},{this.EmailAddress},{this.CellPhoneNumber}";
+        }
     }
 }

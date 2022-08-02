@@ -11,11 +11,8 @@ namespace TrackerLibrary.DataAccess
     public class TextConnector : IDataConnection
     {
         private const string PrizesFile = "PrizeModels.csv";
+        private const string PeopleFile = "PersonModels.csv";
 
-        public PersonModel CreatePerson(PersonModel personModel)
-        {
-            throw new NotImplementedException();
-        }
 
         public PrizeModel CreatePrize(PrizeModel model)
         {
@@ -36,5 +33,27 @@ namespace TrackerLibrary.DataAccess
             
             return model;
         }
+
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            //Load the text file
+            List<PersonModel> personModels = PeopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
+            //Convert the text to List<PrizeModel>
+            // Find the max id
+            int currentId = 1;
+            if (personModels.Count > 0)
+                currentId = personModels.OrderByDescending(x => x.Id).First().Id + 1;
+            model.Id = currentId;
+
+            //Add the new record with the new_id = max_id + 1
+            personModels.Add(model);
+            //convert the prizes to List of string
+            //save the list of string to text file
+            personModels.SaveToPersonFile(PeopleFile);
+
+            return model;
+        }
+
+
     }
 }
