@@ -90,5 +90,15 @@ namespace TrackerLibrary.DataAccess
 
             return newTeam;
         }
+
+        public List<TeamModel> GetTeam_All()
+        {
+            throw new NotImplementedException();
+        }
+
+        public TournamentModel CreateTournament(TournamentModel tournament)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

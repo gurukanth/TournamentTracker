@@ -8,7 +8,8 @@ namespace TrackerLibrary.Models
 {
     public class TournamentModel
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public string TournamentName { get; set; }
         public decimal EntryFee { get; set; }
         public List<TeamModel> EnteredTeams { get; set; } = new List<TeamModel>();
         public List<PrizeModel> Prizes { get; set; } = new List<PrizeModel>();

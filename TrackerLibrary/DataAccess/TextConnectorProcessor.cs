@@ -94,7 +94,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
                 teams.Add(new TeamModel()
                 {
                     Id = int.Parse(columns[0]),
-                    Name = columns[1]
+                    TeamName = columns[1]
                 });
             }
             return teams;
