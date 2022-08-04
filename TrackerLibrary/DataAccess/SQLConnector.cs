@@ -95,11 +95,13 @@ namespace TrackerLibrary.DataAccess
                 SaveTournamentPrizes(tournament, connection);
 
                 SaveTournamentEntries(tournament, connection);
+
+                SaveTournamentRounds(tournament, connection);
             }
             return tournament;
         }
 
-        private static void SaveTournamnet(TournamentModel tournament, IDbConnection connection)
+        private void SaveTournamnet(TournamentModel tournament, IDbConnection connection)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@TournamentName", tournament.TournamentName);
@@ -113,7 +115,7 @@ namespace TrackerLibrary.DataAccess
             tournament.Id = parameters.Get<int>("@Id");
         }
 
-        private static void SaveTournamentPrizes(TournamentModel tournament, IDbConnection connection)
+        private void SaveTournamentPrizes(TournamentModel tournament, IDbConnection connection)
         {
             foreach (var prize in tournament.Prizes)
             {
@@ -129,7 +131,7 @@ namespace TrackerLibrary.DataAccess
             }
         }
 
-        private static void SaveTournamentEntries(TournamentModel tournament, IDbConnection connection)
+        private void SaveTournamentEntries(TournamentModel tournament, IDbConnection connection)
         {
             foreach (var entry in tournament.EnteredTeams)
             {
@@ -143,6 +145,46 @@ namespace TrackerLibrary.DataAccess
                     param: parameters,
                     commandType: CommandType.StoredProcedure);
             }
+        }
+
+        private void SaveTournamentRounds(TournamentModel tournament, IDbConnection connection)
+        {
+            foreach(var round in tournament.Rounds)
+            {
+                foreach(MatchupModel matchup in round)
+                {
+                    SaveMatchup(tournament.Id, matchup, connection);
+
+                    SaveMatchupEntries(matchup, connection);
+                }
+            }
+        }
+
+        private static void SaveMatchup(int tournamentId, MatchupModel matchup, IDbConnection connection)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@TournamentId", tournamentId);
+            parameters.Add("@Round", matchup.Round);
+            parameters.Add("@Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            connection.Execute("dbo.spMatchups_Insert", param: parameters, commandType: CommandType.StoredProcedure);
+            matchup.Id = parameters.Get<int>("@Id");
+        }
+
+        private static void SaveMatchupEntries(MatchupModel matchup, IDbConnection connection)
+        {
+            foreach (MatchupEntryModel entry in matchup.Entries)
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@MatchupId", matchup.Id);
+                parameters.Add("@ParentMatchupId", entry.ParentMatchup != null ? entry.ParentMatchup.Id : null);
+                parameters.Add("@TeamCompetingId", entry.TeamCompeting != null ? entry.TeamCompeting.Id : null);
+                parameters.Add("@Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spMatchupEntries_Insert", param: parameters, commandType: CommandType.StoredProcedure);
+                entry.Id = parameters.Get<int>("@Id");
+            }
+
         }
 
         public List<PersonModel> GetPersons_All()

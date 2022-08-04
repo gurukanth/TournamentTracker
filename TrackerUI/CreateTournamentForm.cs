@@ -113,10 +113,18 @@ namespace TrackerUI
                     EnteredTeams = new List<TeamModel>(selectedTeams),
                     Prizes = new List<PrizeModel>(selectedPrizes)
                 };
-                //create matchups
+                //TODO create matchups
+                TournamentMatchups.CreateRounds(tournament);
+
                 
                 //Create tournament, prizes and entries
                 GlobalConfig.Connection.CreateTournament(tournament);
+
+                tournamentNameText.Text = "";
+                entryFeeText.Text = "0";
+                selectedTeams = new List<TeamModel>();
+                selectedPrizes = new List<PrizeModel>();
+                WireupTeamList();
 
             }
             else
