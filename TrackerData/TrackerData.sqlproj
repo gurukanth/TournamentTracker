@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\TrackerData.publish.xml" />
+    <None Include="TrackerData.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Tournaments.sql" />
@@ -87,5 +88,7 @@
     <Build Include="dbo\Stored Procedures\spTournamentEntries_Insert.sql" />
     <Build Include="dbo\Stored Procedures\spMatchups_Insert.sql" />
     <Build Include="dbo\Stored Procedures\spMatchupEntries_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\spPrizes_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spTournaments_GetAll.sql" />
   </ItemGroup>
 </Project>

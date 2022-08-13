@@ -16,6 +16,7 @@ namespace TrackerUI
     public partial class CreatePrizeForm : Form
     {
         IPrizeRequestor callingFrom;
+        List<PrizeModel> existingPrizes = GlobalConfig.Connection.GetPrizes_All();
         public CreatePrizeForm(IPrizeRequestor caller)
         {
             InitializeComponent();

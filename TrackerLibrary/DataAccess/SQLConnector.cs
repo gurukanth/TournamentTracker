@@ -217,5 +217,33 @@ namespace TrackerLibrary.DataAccess
 
             return teams;
         }
+
+        public List<PrizeModel> GetPrizes_All()
+        {
+            var prizes = new List<PrizeModel>();
+
+            using (IDbConnection connection = GetConnection())
+            {
+                prizes = connection.Query<PrizeModel>("dbo.spPrizes_GetAll").ToList();
+            }
+
+            return prizes;
+        }
+
+        public List<TournamentModel> GetTournament_All()
+        {
+            var tournaments = new List<TournamentModel>();
+            using(IDbConnection connection = GetConnection())
+            {
+                tournaments = connection.Query<TournamentModel>("dbo.spTournaments_GetAll").ToList();
+            }
+
+            return tournaments;
+        }
+
+        public TournamentModel Load_Tournament(TournamentModel tournament)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

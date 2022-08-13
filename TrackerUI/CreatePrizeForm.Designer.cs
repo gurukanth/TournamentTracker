@@ -39,6 +39,10 @@
             this.prizeAmountLabel = new System.Windows.Forms.Label();
             this.orLabel = new System.Windows.Forms.Label();
             this.createPrizeButton = new System.Windows.Forms.Button();
+            this.selectPrizeHeader = new System.Windows.Forms.Label();
+            this.existingPrizeListBox = new System.Windows.Forms.ListBox();
+            this.selectExistingPrizeButton = new System.Windows.Forms.Button();
+            this.orSelectLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -153,12 +157,62 @@
             this.createPrizeButton.UseVisualStyleBackColor = true;
             this.createPrizeButton.Click += new System.EventHandler(this.createPrizeButton_Click);
             // 
+            // selectPrizeHeader
+            // 
+            this.selectPrizeHeader.AutoSize = true;
+            this.selectPrizeHeader.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.selectPrizeHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.selectPrizeHeader.Location = new System.Drawing.Point(517, 23);
+            this.selectPrizeHeader.Name = "selectPrizeHeader";
+            this.selectPrizeHeader.Size = new System.Drawing.Size(300, 45);
+            this.selectPrizeHeader.TabIndex = 22;
+            this.selectPrizeHeader.Text = "Select Existing Prize";
+            // 
+            // existingPrizeListBox
+            // 
+            this.existingPrizeListBox.FormattingEnabled = true;
+            this.existingPrizeListBox.ItemHeight = 30;
+            this.existingPrizeListBox.Location = new System.Drawing.Point(530, 106);
+            this.existingPrizeListBox.Name = "existingPrizeListBox";
+            this.existingPrizeListBox.Size = new System.Drawing.Size(297, 244);
+            this.existingPrizeListBox.TabIndex = 23;
+            // 
+            // selectExistingPrizeButton
+            // 
+            this.selectExistingPrizeButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.selectExistingPrizeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.selectExistingPrizeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.selectExistingPrizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectExistingPrizeButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.selectExistingPrizeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.selectExistingPrizeButton.Location = new System.Drawing.Point(591, 386);
+            this.selectExistingPrizeButton.Name = "selectExistingPrizeButton";
+            this.selectExistingPrizeButton.Size = new System.Drawing.Size(179, 38);
+            this.selectExistingPrizeButton.TabIndex = 24;
+            this.selectExistingPrizeButton.Text = "Select Prize";
+            this.selectExistingPrizeButton.UseVisualStyleBackColor = true;
+            // 
+            // orSelectLabel
+            // 
+            this.orSelectLabel.AutoSize = true;
+            this.orSelectLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.orSelectLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.orSelectLabel.Location = new System.Drawing.Point(453, 35);
+            this.orSelectLabel.Name = "orSelectLabel";
+            this.orSelectLabel.Size = new System.Drawing.Size(23, 30);
+            this.orSelectLabel.TabIndex = 25;
+            this.orSelectLabel.Text = "||";
+            // 
             // CreatePrizeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(489, 480);
+            this.ClientSize = new System.Drawing.Size(871, 480);
+            this.Controls.Add(this.orSelectLabel);
+            this.Controls.Add(this.selectExistingPrizeButton);
+            this.Controls.Add(this.existingPrizeListBox);
+            this.Controls.Add(this.selectPrizeHeader);
             this.Controls.Add(this.createPrizeButton);
             this.Controls.Add(this.orLabel);
             this.Controls.Add(this.prizePercentageText);
@@ -194,5 +248,9 @@
         private Label prizeAmountLabel;
         private Label orLabel;
         private Button createPrizeButton;
+        private Label selectPrizeHeader;
+        private ListBox existingPrizeListBox;
+        private Button selectExistingPrizeButton;
+        private Label orSelectLabel;
     }
 }
